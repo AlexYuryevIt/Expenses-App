@@ -1,0 +1,99 @@
+.expenses {
+  margin: 100px auto 0;
+  width: 32%;
+  display: flex;
+  flex-direction: column;
+}
+
+.expenses__title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.expenses__wrapper {
+  margin-top: 30px;
+}
+
+.expanses__form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 45px;
+}
+
+.expenses__input {
+  width: 300px;
+  height: 45px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+}
+
+.expenses__input::placeholder {
+  font-size: 16px;
+  font-family: "Comfortaa", cursive;
+}
+
+.expenses__currency {
+  position: absolute;
+  left: 260px;
+  bottom: 15px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.expenses__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 20px;
+  border: none;
+  background: none;
+  outline: none;
+  font-family: "Comfortaa", cursive;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.expenses__btn-reset {
+  display: none;
+}
+
+.expenses__btn-reset_active {
+  margin: 30px auto 0;
+  display: flex;
+}
+
+.expenses__summary {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.expenses__history {
+  width: 50%;
+}
+
+.expenses__log {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.expenses__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.expenses__status {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

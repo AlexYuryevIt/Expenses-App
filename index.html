@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expances App</title>
+
+    <link rel="stylesheet" href="./vendor/reset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/index.css" />
+  </head>
+  <body class="page">
+    <section class="expenses">
+      <h1 class="expenses__title">Приложение для учета расходов</h1>
+      <div class="expenses__wrapper">
+        <div class="expanses__form">
+          <input
+            type="number"
+            class="expenses__input js-expenses-input"
+            placeholder="Введите сумму"
+          />
+          <p class="expenses__currency">руб.</p>
+          <button class="expenses__btn js-expenses-btn">Добавить</button>
+        </div>
+      </div>
+
+      <div class="expenses__summary">
+        <div class="expenses__history">
+          <h2 class="expenses__history-title">История:</h2>
+          <div class="expenses__log js-expenses-log"></div>
+        </div>
+
+        <div class="expenses__status">
+          <p class="expenses__limit">
+            Лимит: <span class="js-expenses-limit"></span>
+          </p>
+          <p class="expenses__total">
+            Потрачено:
+            <span class="js-total expenses__total-text">0</span> &#8381;
+          </p>
+        </div>
+      </div>
+      <button class="expenses__btn expenses__btn-reset js-reset-btn">
+        Сбросить
+      </button>
+    </section>
+
+    <script src="./js/index.js"></script>
+  </body>
+</html>
