@@ -1,33 +1,42 @@
 .expenses {
-  margin: 100px auto 0;
-  width: 32%;
+  margin: 50px auto 0;
+  padding: 0 15px;
+  width: 100%;
+  max-width: 425px;
   display: flex;
   flex-direction: column;
+  gap: 30px;
 }
 
 .expenses__title {
+  width: 100%;
   font-size: 24px;
   font-weight: bold;
+  text-align: center;
 }
 
-.expenses__wrapper {
-  margin-top: 30px;
-}
-
-.expanses__form {
+.expenses__form {
+  max-width: 390px;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  position: relative;
+  justify-content: center;
   height: 45px;
+}
+
+.expenses__form-label {
+  flex: 1 1 100%;
 }
 
 .expenses__input {
-  width: 300px;
+  padding: 0 10px;
+  width: 100%;
   height: 45px;
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  box-sizing: border-box;
   outline: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   color: rgba(0, 0, 0, 0.6);
   font-size: 16px;
 }
@@ -37,39 +46,41 @@
   font-family: "Comfortaa", cursive;
 }
 
-.expenses__currency {
-  position: absolute;
-  left: 260px;
-  bottom: 15px;
-  font-size: 16px;
-  color: rgba(0, 0, 0, 0.6);
+.expenses__input::-webkit-outer-spin-button,
+.expenses__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .expenses__btn {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 150px;
-  height: 20px;
-  border: none;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  height: 45px;
   background: none;
   outline: none;
   font-family: "Comfortaa", cursive;
   font-size: 12px;
   cursor: pointer;
+  transition: all 1s ease;
 }
 
 .expenses__btn-reset {
-  display: none;
+  width: 0;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  visibility: hidden;
 }
 
 .expenses__btn-reset_active {
-  margin: 30px auto 0;
-  display: flex;
+  width: 100%;
+  visibility: visible;
 }
 
 .expenses__summary {
-  margin-top: 30px;
   display: flex;
   justify-content: space-between;
 }

@@ -1,4 +1,8 @@
 const LIMIT = 10000;
+const CURRENCY = `\u{20BD}`;
+const LIMIT_EXHAUSTED = "Лимит исчерпан";
+const LIMIT_EXCEEDED = "Лимит превышен";
+const NO_EXPENSES = "Трат нет";
 
 const inputNode = document.querySelector(".js-expenses-input");
 const btnNode = document.querySelector(".js-expenses-btn");
@@ -9,8 +13,8 @@ const resetBtn = document.querySelector(".js-reset-btn");
 
 const expenses = [];
 
-limitNode.innerText = `${LIMIT} \u{20BD}`;
-logNode.innerText = "Трат нет";
+limitNode.innerText = LIMIT;
+logNode.innerText = NO_EXPENSES;
 
 btnNode.addEventListener("click", function () {
   if (!inputNode.value) {
@@ -27,7 +31,7 @@ btnNode.addEventListener("click", function () {
   let expensesListHTML = "";
 
   expenses.forEach((element) => {
-    expensesListHTML += `<li>${element} &#8381</li>`;
+    expensesListHTML += `<li>${element} ${CURRENCY}</li>`;
   });
 
   logNode.innerHTML = `<ol class="expenses__list">${expensesListHTML}</ol>`;
@@ -42,16 +46,16 @@ btnNode.addEventListener("click", function () {
   if (sum < LIMIT) {
     limitNode.innerText = LIMIT - sum;
   } else if (sum == LIMIT) {
-    limitNode.innerText = "Лимит исчерпан";
+    limitNode.innerText = LIMIT_EXHAUSTED;
   } else if (sum >= LIMIT) {
-    limitNode.innerText = "Лимит превышен";
+    limitNode.innerText = LIMIT_EXCEEDED;
   }
 });
 
 resetBtn.addEventListener("click", function () {
   resetBtn.classList.remove("expenses__btn-reset_active");
-  logNode.innerText = "Трат нет";
-  limitNode.innerText = `${LIMIT} \u{20BD}`;
+  logNode.innerText = NO_EXPENSES;
+  limitNode.innerText = `${LIMIT} ${CURRENCY}`;
   totalNode.innerText = 0;
   expenses.length = 0;
 });
