@@ -18,10 +18,14 @@
 .expenses__form {
   max-width: 390px;
   width: 100%;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 45px;
+}
+
+.expenses__form-edit_inactive {
+  display: none;
 }
 
 .expenses__form-label {
@@ -37,8 +41,8 @@
   border-radius: 10px 0 0 10px;
   box-sizing: border-box;
   outline: none;
-  color: rgba(0, 0, 0, 0.6);
   font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .expenses__input::placeholder {
@@ -53,38 +57,74 @@
 }
 
 .expenses__btn {
+  padding: 0 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-left: none;
   border-radius: 0 10px 10px 0;
+  width: 10%;
   height: 45px;
-  background: none;
+  background: #fff;
   outline: none;
   font-family: "Comfortaa", cursive;
-  font-size: 12px;
+  font-size: 30px;
+  text-align: center;
   cursor: pointer;
-  transition: all 1s ease;
+  transition: all 0.5s ease-in-out;
+}
+
+.expenses__btn_active {
+  border-right: none;
+  border-radius: 0;
 }
 
 .expenses__btn-reset {
+  padding: 0 10px;
   width: 0;
+  scale: 0;
   border: 1px solid rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  visibility: hidden;
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  align-items: stretch;
+  display: none;
 }
 
 .expenses__btn-reset_active {
-  width: 100%;
-  visibility: visible;
+  display: flex;
+  width: 10%;
+  scale: 1;
+}
+
+.expanses__edit-btn {
+  border: none;
+  outline: none;
+  background-image: url(../img/edit-icon.png);
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.expanses__confirm-btn {
+  width: 43px;
+  height: 45px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  outline: none;
+
+  background: url(../img/confirmation-icon.png) #fff no-repeat center;
 }
 
 .expenses__summary {
   display: flex;
   justify-content: space-between;
 }
+
 .expenses__history {
+  padding-left: 20px;
   width: 50%;
 }
 
@@ -99,12 +139,26 @@
 .expenses__list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .expenses__status {
   width: 50%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+}
+
+.expenses__credit {
+  display: none;
+}
+
+.expenses__limit-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.expenses__credit_active {
+  display: block;
 }

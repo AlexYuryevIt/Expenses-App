@@ -19,42 +19,74 @@
     <section class="expenses">
       <h1 class="expenses__title">Контроль и учет расходов</h1>
 
-      <form class="expenses__form" autocomplete="off">
-        <label
-          for=""
-          title="Укажите лимит в рублях"
-          class="expenses__form-label"
-        >
+      <form
+        class="expenses__form expenses__form-edit js-edit-form"
+        autocomplete="off"
+      >
+        <label title="Укажите лимит в рублях" class="expenses__form-label">
+          <input
+            type="number"
+            class="expenses__input js-edit-input"
+            placeholder="Укажите лимит"
+            autofocus
+            required
+          />
+        </label>
+        <button
+          class="expenses__btn expanses__confirm-btn js-confirm-btn"
+          type="submit"
+        ></button>
+      </form>
+
+      <form
+        class="expenses__form expenses__form-add js-add-form"
+        autocomplete="off"
+      >
+        <label title="Укажите сумму в рублях" class="expenses__form-label">
           <input
             type="number"
             class="expenses__input js-expenses-input"
             placeholder="Введите сумму"
-            required
             autofocus
+            required
           />
         </label>
         <button class="expenses__btn js-expenses-btn" type="submit">
-          Добавить
+          &#43;
+        </button>
+        <button
+          class="expenses__btn expenses__btn-reset js-reset-btn"
+          type="reset"
+        >
+          &#8634;
         </button>
       </form>
 
       <div class="expenses__summary">
-        <div class="expenses__history">
-          <h2 class="expenses__history-title">История:</h2>
-          <div class="expenses__log js-expenses-log"></div>
-        </div>
-
         <div class="expenses__status">
-          <p class="expenses__limit">
-            Лимит: <span class="js-expenses-limit"></span>
-          </p>
+          <div class="expenses__limit-wrapper">
+            <p class="expenses__limit">
+              Лимит: <span class="js-expenses-limit"></span>
+            </p>
+            <button class="expanses__edit-btn js-edit-btn"></button>
+          </div>
           <p class="expenses__total">
             Потрачено:
-            <span class="js-total expenses__total-text">0</span> &#8381;
+            <span class="js-total expenses__total-text"></span>
           </p>
-          <button class="expenses__btn expenses__btn-reset js-reset-btn">
-            Сбросить
-          </button>
+          <p class="expenses__residual-amount">
+            Остаток:
+            <span class="js-residual-amount"></span>
+          </p>
+          <p class="expenses__credit js-credit-appearance">
+            Долг:
+            <span class="js-credit"></span>
+          </p>
+        </div>
+
+        <div class="expenses__history">
+          <h2 class="expenses__history-title">История расходов:</h2>
+          <div class="expenses__log js-expenses-log"></div>
         </div>
       </div>
     </section>
