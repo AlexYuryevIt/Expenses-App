@@ -1,42 +1,49 @@
-const LIMIT = 10000;
+//Зачения статусов и валюты
 const CURRENCY = `\u{20BD}`;
 const LIMIT_EXHAUSTED = "Исчерпан";
 const LIMIT_EXCEEDED = "Превышен";
 const NO_EXPENSES = "Трат нет";
 
-const inputFormNode = document.querySelector(".js-add-form");
-const editFormNode = document.querySelector(".js-edit-form");
-const inputNode = document.querySelector(".js-expenses-input");
+//Кнопки
 const btnNode = document.querySelector(".js-expenses-btn");
-const logNode = document.querySelector(".js-expenses-log");
-const totalNode = document.querySelector(".js-total");
+const editBtnNode = document.querySelector(".js-edit-btn");
+const confirmBtnNode = document.querySelector(".js-confirm-btn");
+const resetBtn = document.querySelector(".js-reset-btn");
+
+//Формы
+const editFormNode = document.querySelector(".js-edit-form");
+const inputFormNode = document.querySelector(".js-add-form");
+
+//Поля ввода
+const inputNode = document.querySelector(".js-expenses-input");
+const editInputNode = document.querySelector(".js-edit-input");
+
+//Лимит, потрачено, остаток, долг
+const moneySpentNode = document.querySelector(".js-money-spent");
 const limitNode = document.querySelector(".js-expenses-limit");
 const residualAmount = document.querySelector(".js-residual-amount");
 const creditNode = document.querySelector(".js-credit-appearance");
 const creditAmout = document.querySelector(".js-credit");
-const resetBtn = document.querySelector(".js-reset-btn");
 
-const editInputNode = document.querySelector(".js-edit-input");
-const editBtnNode = document.querySelector(".js-edit-btn");
-const confirmBtnNode = document.querySelector(".js-confirm-btn");
+//История расходов
+const logNode = document.querySelector(".js-expenses-log");
 
 const expenses = [];
+let limit;
+
+function init() {
+  logNode.innerText = NO_EXPENSES;
+  moneySpentNode.innerText = 0 + ` ${CURRENCY}`;
+}
+
+init();
 
 function edit() {
   inputFormNode.classList.toggle("expenses__form-add_active");
-  editFormNode.classList.toggle("expenses__form-edit_active");
-}
-
-function init() {
-  limitNode.innerText = LIMIT + ` ${CURRENCY}`;
-  residualAmount.innerText = LIMIT + ` ${CURRENCY}`;
-  logNode.innerText = NO_EXPENSES;
-  totalNode.innerText = 0 + ` ${CURRENCY}`;
+  editFormNode.classList.toggle("expenses__form-edit_inactive");
 }
 
 editBtnNode.addEventListener("click", edit);
-
-init();
 
 btnNode.addEventListener("click", function (e) {
   if (!inputNode.value) {
@@ -44,7 +51,6 @@ btnNode.addEventListener("click", function (e) {
   }
 
   e.preventDefault();
-  const limit = parseInt;
   const expense = parseInt(inputNode.value);
   inputNode.value = "";
 
@@ -61,36 +67,55 @@ btnNode.addEventListener("click", function (e) {
 
   logNode.innerHTML = `<ol class="expenses__list">${expensesListHTML}</ol>`;
 
+  //Вынести sum
   let sum = 0;
   expenses.forEach((element) => {
     sum += element;
 
-    totalNode.innerText = sum + ` ${CURRENCY}`;
+    moneySpentNode.innerText = sum + ` ${CURRENCY}`;
   });
 
-  if (sum < LIMIT) {
-    residualAmount.innerText = LIMIT - sum + ` ${CURRENCY}`;
-  } else if (sum == LIMIT) {
-    limitNode.innerText = LIMIT_EXHAUSTED;
+  if (sum < limit) {
+    residualAmount.innerText = limit - sum + ` ${CURRENCY}`;
+  } else if (sum == limit) {
     residualAmount.innerText = 0;
-  } else if (sum >= LIMIT) {
-    limitNode.innerText = LIMIT_EXCEEDED;
+  } else if (sum >= limit) {
     residualAmount.innerText = 0;
     creditNode.classList.add("expenses__credit_active");
-    creditAmout.innerText = sum - LIMIT + ` ${CURRENCY}`;
+    creditAmout.innerText = sum - limit + ` ${CURRENCY}`;
   }
 });
 
-function reset() {
-  resetBtn.classList.remove("expenses__btn-reset_active");
-  btnNode.classList.remove("expenses__btn_active");
-  creditNode.classList.remove("expenses__credit_active");
-  expenses.length = 0;
-  logNode.innerText = NO_EXPENSES;
-  limitNode.innerText = LIMIT + ` ${CURRENCY}`;
-  totalNode.innerText = 0 + ` ${CURRENCY}`;
-  residualAmount.innerText = LIMIT + ` ${CURRENCY}`;
-  creditAmout.innerText = "";
+function newLimit() {
+  limit = parseInt(editInputNode.value);
+  editInputNode.value = "";
+
+  residualAmount.innerText = limit - sum + ` ${CURRENCY}`;
 }
 
-resetBtn.addEventListener("click", reset);
+confirmBtnNode.addEventListener("click", function (e) {
+  if (!editInputNode.value) {
+    return;
+  }
+  newLimit();
+
+  limitNode.innerText = limit + ` ${CURRENCY}`;
+  residualAmount.innerText = limit + ` ${CURRENCY}`;
+  inputFormNode.classList.add("expenses__form-add_active");
+  editFormNode.classList.add("expenses__form-edit_inactive");
+  e.preventDefault();
+});
+
+// function reset() {
+//   resetBtn.classList.remove("expenses__btn-reset_active");
+//   btnNode.classList.remove("expenses__btn_active");
+//   creditNode.classList.remove("expenses__credit_active");
+//   expenses.length = 0;
+//   logNode.innerText = NO_EXPENSES;
+//   // limitNode.innerText = LIMIT + ` ${CURRENCY}`;
+//   totalNode.innerText = 0 + ` ${CURRENCY}`;
+//   // residualAmount.innerText = LIMIT + ` ${CURRENCY}`;
+//   creditAmout.innerText = "";
+// }
+
+// resetBtn.addEventListener("click", reset);
