@@ -3,6 +3,7 @@ const CURRENCY = `\u{20BD}`;
 const LIMIT_EXHAUSTED = "Исчерпан";
 const LIMIT_EXCEEDED = "Превышен";
 const NO_EXPENSES = "Трат нет";
+const SET_LIMIT = "Не установлен";
 
 //Кнопки
 const btnNode = document.querySelector(".js-expenses-btn");
@@ -31,49 +32,29 @@ const logNode = document.querySelector(".js-expenses-log");
 const expenses = [];
 let limit;
 
-function init() {
-  logNode.innerText = NO_EXPENSES;
-  moneySpentNode.innerText = 0 + ` ${CURRENCY}`;
-}
-
-init();
-
-function edit() {
-  inputFormNode.classList.toggle("expenses__form-add_active");
-  editFormNode.classList.toggle("expenses__form-edit_inactive");
-}
-
-editBtnNode.addEventListener("click", edit);
+init(expenses);
 
 btnNode.addEventListener("click", function (e) {
-  if (!inputNode.value) {
-    return;
-  }
-
+  //Предотвращаем стандартное поведение браузера
   e.preventDefault();
-  const expense = parseInt(inputNode.value);
-  inputNode.value = "";
+  //Получаем значение из поля ввода
+  getExpenseFromUser();
 
+  const expense = parseInt(inputNode.value);
+  //Очищаем поле ввода
+  clearInput();
+
+  //Записываем расход
+  trackExpense(expense);
+
+  //Скрываем поле ввода лимита, показываем поле ввода трат
   resetBtn.classList.add("expenses__btn-reset_active");
   btnNode.classList.add("expenses__btn_active");
 
-  expenses.push(expense);
+  //Выведем новый список трат
+  renderExpenses(expenses);
 
-  let expensesListHTML = "";
-
-  expenses.forEach((element) => {
-    expensesListHTML += `<li>${element} ${CURRENCY}</li>`;
-  });
-
-  logNode.innerHTML = `<ol class="expenses__list">${expensesListHTML}</ol>`;
-
-  //Вынести sum
-  let sum = 0;
-  expenses.forEach((element) => {
-    sum += element;
-
-    moneySpentNode.innerText = sum + ` ${CURRENCY}`;
-  });
+  moneySpentNode.innerText = calculateExpenses(expenses) + ` ${CURRENCY}`;
 
   if (sum < limit) {
     residualAmount.innerText = limit - sum + ` ${CURRENCY}`;
@@ -86,17 +67,14 @@ btnNode.addEventListener("click", function (e) {
   }
 });
 
-function newLimit() {
-  limit = parseInt(editInputNode.value);
-  editInputNode.value = "";
-
-  residualAmount.innerText = limit - sum + ` ${CURRENCY}`;
-}
+editBtnNode.addEventListener("click", edit);
 
 confirmBtnNode.addEventListener("click", function (e) {
+  //Получаем значение из поля ввода
   if (!editInputNode.value) {
     return;
   }
+
   newLimit();
 
   limitNode.innerText = limit + ` ${CURRENCY}`;
@@ -106,16 +84,51 @@ confirmBtnNode.addEventListener("click", function (e) {
   e.preventDefault();
 });
 
-// function reset() {
-//   resetBtn.classList.remove("expenses__btn-reset_active");
-//   btnNode.classList.remove("expenses__btn_active");
-//   creditNode.classList.remove("expenses__credit_active");
-//   expenses.length = 0;
-//   logNode.innerText = NO_EXPENSES;
-//   // limitNode.innerText = LIMIT + ` ${CURRENCY}`;
-//   totalNode.innerText = 0 + ` ${CURRENCY}`;
-//   // residualAmount.innerText = LIMIT + ` ${CURRENCY}`;
-//   creditAmout.innerText = "";
-// }
+//Функции
+function init(expenses) {
+  limitNode.innerText = SET_LIMIT;
+  logNode.innerText = NO_EXPENSES;
+  moneySpentNode.innerText = calculateExpenses(expenses) + ` ${CURRENCY}`;
+}
 
-// resetBtn.addEventListener("click", reset);
+function trackExpense() {
+  expenses.push();
+}
+
+function clearInput() {
+  inputNode.value = "";
+}
+
+//Считаем расходы
+function calculateExpenses(expenses) {
+  let sum = 0;
+
+  expenses.forEach((element) => {
+    sum += element;
+  });
+
+  return sum;
+}
+
+//Получаем новый лимит
+function newLimit() {
+  limit = parseInt(editInputNode.value);
+  editInputNode.value = "";
+
+  // residualAmount.innerText = limit - sum + ` ${CURRENCY}`;
+}
+
+function edit() {
+  inputFormNode.classList.toggle("expenses__form-add_active");
+  editFormNode.classList.toggle("expenses__form-edit_inactive");
+}
+
+//Выводим список трат
+function renderExpenses(expenses) {
+  let expensesListHTML = "";
+
+  expenses.forEach((element) => {
+    expensesListHTML += `<li>${element} ${CURRENCY}</li>`;
+    logNode.innerHTML = `<ol class="expenses__list">${expensesListHTML}</ol>`;
+  });
+}

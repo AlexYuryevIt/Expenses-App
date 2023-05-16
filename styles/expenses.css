@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  font-size: 14px;
 }
 
 .expenses__title {
@@ -133,10 +134,13 @@
 .expenses__summary {
   display: flex;
   justify-content: space-between;
+  gap: 5px;
 }
 
 .expenses__history {
-  padding-left: 20px;
+  padding: 5px;
+  border: 1px solid #b6adad;
+  border-radius: 10px;
   width: 50%;
 }
 
@@ -155,7 +159,10 @@
 }
 
 .expenses__status {
+  padding: 5px;
   width: 50%;
+  border: 1px solid #b6adad;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -168,7 +175,7 @@
 .expenses__limit-wrapper {
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: space-between;
 }
 
 .expenses__credit_active {
