@@ -64,35 +64,43 @@
         </button>
       </form>
 
-      <div class="expenses__summary">
-        <div class="expenses__status">
-          <div class="expenses__limit-wrapper">
-            <p class="expenses__limit">
-              Лимит: <span class="js-expenses-limit"></span>
-            </p>
-            <button class="expanses__edit-btn js-edit-btn"></button>
-          </div>
-          <p class="expenses__total">
-            Потрачено:
-            <span class="js-money-spent expenses__total-text"></span>
-          </p>
-          <p class="expenses__residual-amount">
-            Остаток:
-            <span class="js-residual-amount"></span>
-          </p>
-          <p class="expenses__credit js-credit-appearance">
-            Долг:
-            <span class="js-credit"></span>
-          </p>
-        </div>
+      <select name="category" size="1" class="expenses__category js-category">
+        <option selected hidden disabled>Выберите категорию</option>
+        <option value="Аптека">Аптека</option>
+        <option value="Кафе и рестораны">Кафе и рестораны</option>
+        <option value="Обучение">Обучение</option>
+        <option value="Развлечения">Развлечения</option>
+        <option value="Транспорт">Транспорт</option>
+        <option value="Электроника">Электроника</option>
+      </select>
 
-        <div class="expenses__history">
-          <h2 class="expenses__history-title">История расходов:</h2>
-          <div class="expenses__log js-expenses-log"></div>
+      <div class="expenses__status">
+        <div class="expenses__limit-wrapper">
+          <p class="expenses__limit">
+            Лимит: <span class="js-expenses-limit"></span>
+          </p>
+          <button class="expanses__edit-btn js-edit-btn"></button>
         </div>
+        <p class="expenses__total">
+          Потрачено:
+          <span class="js-money-spent expenses__total-text"></span>
+        </p>
+        <p class="expenses__residual-amount">
+          Остаток:
+          <span class="js-residual-amount"></span>
+        </p>
+        <p class="expenses__credit js-credit-appearance">
+          Долг:
+          <span class="js-credit"></span>
+        </p>
+      </div>
+
+      <div class="expenses__history">
+        <h2 class="expenses__history-title">История расходов:</h2>
+        <div class="expenses__log js-expenses-log"></div>
       </div>
     </section>
 
-    <script src="./js/index1.js"></script>
+    <script src="./js/index.js"></script>
   </body>
 </html>

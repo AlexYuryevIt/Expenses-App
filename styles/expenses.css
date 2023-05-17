@@ -63,6 +63,20 @@
   font-family: "Comfortaa", cursive;
 }
 
+.expenses__category {
+  padding: 10px;
+  width: 100%;
+  max-width: 390px;
+  height: 45px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 16px;
+  font-family: "Comfortaa", cursive;
+  color: rgba(0, 0, 0, 0.6);
+}
+
 .expenses__input::-webkit-outer-spin-button,
 .expenses__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -131,21 +145,15 @@
   background: url(../img/confirmation-icon.png) #fff no-repeat center;
 }
 
-.expenses__summary {
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-}
-
 .expenses__history {
   padding: 5px;
   border: 1px solid #b6adad;
   border-radius: 10px;
-  width: 50%;
+  width: 100%;
 }
 
 .expenses__log {
-  margin-top: 10px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -162,7 +170,7 @@
 
 .expenses__status {
   padding: 5px;
-  width: 50%;
+  width: 100%;
   border: 1px solid #b6adad;
   border-radius: 10px;
   display: flex;
