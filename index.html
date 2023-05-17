@@ -39,6 +39,21 @@
         ></button>
       </form>
 
+      <select name="category" size="1" class="expenses__category js-category">
+        <option hidden selected disabled>Выберите категорию</option>
+        <option value="Аптека">Аптека</option>
+        <option value="Кафе и рестораны">Кафе и рестораны</option>
+        <option value="Обучение">Обучение</option>
+        <option value="Продукты">Продукты</option>
+        <option value="Развлечения">Развлечения</option>
+        <option value="Транспорт">Транспорт</option>
+        <option value="Электроника">Электроника</option>
+      </select>
+
+      <div class="category-warning js-warning">
+        Необходимо выбрать категорию расходов
+      </div>
+
       <form
         class="expenses__form expenses__form-add js-add-form"
         autocomplete="off"
@@ -59,17 +74,10 @@
           type="reset"
         ></button>
       </form>
-      <div class="category-warning">Необходимо выбрать категорию расходов</div>
-      <select name="category" size="1" class="expenses__category js-category">
-        <option hidden selected disabled>Выберите категорию</option>
-        <option value="Аптека">Аптека</option>
-        <option value="Кафе и рестораны">Кафе и рестораны</option>
-        <option value="Обучение">Обучение</option>
-        <option value="Продукты">Продукты</option>
-        <option value="Развлечения">Развлечения</option>
-        <option value="Транспорт">Транспорт</option>
-        <option value="Электроника">Электроника</option>
-      </select>
+
+      <div class="expenses__warning js-expenses-warning">
+        Необходимо укзать сумму
+      </div>
 
       <div class="expenses__status">
         <div class="expenses__limit-wrapper">
