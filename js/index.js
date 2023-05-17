@@ -31,8 +31,7 @@ const creditAmout = document.querySelector(".js-credit");
 const logNode = document.querySelector(".js-expenses-log");
 
 const expenses = [];
-let selectedCategoryValue = categoryNode.value;
-let selectedCategory = "";
+
 let limit;
 let sum = 0;
 
@@ -53,19 +52,7 @@ confirmBtnNode.addEventListener("click", function (e) {
 });
 
 //Кнопка добавления трат
-addBtnNode.addEventListener("click", function (e) {
-  e.preventDefault();
-  const expense = getExpenseFromUser();
-
-  if (!expense) {
-    return;
-  }
-
-  trackExpense(expense);
-  activateResetBtn();
-  render(expenses);
-  resetSelectedCategory();
-});
+addBtnNode.addEventListener("click", addButtonHandler);
 
 //Кнопка сброса
 resetBtn.addEventListener("click", reset);
@@ -74,6 +61,30 @@ resetBtn.addEventListener("click", reset);
 editBtnNode.addEventListener("click", edit);
 
 //-----------------Функции-----------------
+
+function addButtonHandler(event) {
+  event.preventDefault();
+  const expense = getExpenseFromUser();
+
+  if (!expense) {
+    return;
+  }
+
+  //Сохраняем значение выбранную категорию
+  const currentCategory = getCategory();
+  //Проверяем, если категория не выбрана, выходим из функции
+  if (currentCategory === "Выберите категорию") {
+    return;
+  }
+
+  //Записываем полученное значение траты от пользователя в массив с тратами
+  const newExpense = { amount: expense, category: currentCategory };
+  expenses.push(newExpense);
+
+  activateResetBtn();
+  render(expenses);
+  resetSelectedCategory();
+}
 
 //Отображение статусов при загрузке страницы
 function init() {
@@ -125,13 +136,8 @@ function getExpenseFromUser() {
   return expense;
 }
 
-//Записываем полученное значение траты от пользователя в массив с тратами
-function trackExpense(expense) {
-  if (typeof expense !== "number") {
-    return;
-  }
-  const expenseObject = { amount: expense, category: categoryNode.value };
-  expenses.push(expenseObject);
+function getCategory() {
+  return categoryNode.value;
 }
 
 //Выводим полученное значение траты в список истории трат
@@ -149,14 +155,6 @@ function activateResetBtn() {
   resetBtn.classList.add("expenses__btn-reset_active");
   addBtnNode.classList.add("expenses__btn_active");
 }
-
-//Считаем траты
-// function calculateExpenses(expenses) {
-//   expenses.forEach((element) => {
-//     sum += element;
-//   });
-//   return sum;
-// }
 
 const calculateExpenses = (expenses) => {
   sum = expenses.reduce((sum, expense) => {
