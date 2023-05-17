@@ -139,9 +139,6 @@ function renderExpenses(expenses) {
   let expensesListHTML = "";
 
   expenses.forEach((expense) => {
-    if (!expense.category) {
-      expensesListHTML += `<li>${expense.amount} ${CURRENCY}</li>`;
-    }
     expensesListHTML += `<li>${expense.amount} ${CURRENCY} - ${expense.category}</li>`;
   });
   logNode.innerHTML = `<ol class="expenses__list">${expensesListHTML}</ol>`;
