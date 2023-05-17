@@ -69,6 +69,14 @@
   scale: 0;
 }
 
+.category-warning {
+  display: none;
+}
+
+.category-warning_active {
+  display: block;
+}
+
 .expenses__category_active {
   padding: 10px;
   width: 100%;

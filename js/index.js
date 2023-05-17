@@ -66,7 +66,7 @@ function addButtonHandler(event) {
   event.preventDefault();
   const expense = getExpenseFromUser();
 
-  if (!expense) {
+  if (!expense || expense < 0.01) {
     return;
   }
 
@@ -95,7 +95,7 @@ function init() {
 
 //Получаем значение из поля ввода лимита
 function getLimitValue() {
-  if (!limitInputNode.value) {
+  if (!limitInputNode.value || limitInputNode.value < 0) {
     return;
   }
   limit = parseInt(limitInputNode.value);
