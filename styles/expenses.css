@@ -117,7 +117,9 @@
   text-align: center;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-  background-image: url(../img/add-icon.png) no-repeat center;
+  background-image: url(../img/add-icon.png);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .expenses__btn_active {
@@ -140,6 +142,9 @@
   display: flex;
   width: 10%;
   scale: 1;
+  background-image: url(../img/reset-icon.png);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .expanses__edit-btn {
