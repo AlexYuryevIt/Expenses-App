@@ -110,6 +110,7 @@ function renderLimit() {
 function changeInput() {
   inputFormNode.classList.toggle("expenses__form-add_active");
   editFormNode.classList.toggle("expenses__form-edit_inactive");
+  categoryNode.classList.toggle("expenses__category_active");
 }
 
 //Получаем значение траты от пользователя
@@ -211,6 +212,7 @@ function renderSum(sum) {
 function edit() {
   inputFormNode.classList.remove("expenses__form-add_active");
   editFormNode.classList.remove("expenses__form-edit_inactive");
+  categoryNode.classList.remove("expenses__category_active");
 }
 
 //Сбрасываем значения
