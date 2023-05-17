@@ -26,6 +26,8 @@ const limitNode = document.querySelector(".js-expenses-limit");
 const residualAmount = document.querySelector(".js-residual-amount");
 const creditNode = document.querySelector(".js-credit-appearance");
 const creditAmout = document.querySelector(".js-credit");
+const categoryWarning = document.querySelector(".js-warning");
+const expensesWarning = document.querySelector(".js-expenses-warning");
 
 //История расходов
 const logNode = document.querySelector(".js-expenses-log");
@@ -40,16 +42,7 @@ init(expenses);
 //-----------------Кнопки-----------------
 
 //Кнопка подтверждения лимита
-confirmBtnNode.addEventListener("click", function (e) {
-  e.preventDefault();
-  getLimitValue();
-  clearLimitInput();
-  renderLimit();
-  changeInput();
-  renderCreditAmount();
-  activateResetBtn();
-  renderResidualAmount(limit, sum);
-});
+confirmBtnNode.addEventListener("click", confirmButtonHandler);
 
 //Кнопка добавления трат
 addBtnNode.addEventListener("click", addButtonHandler);
@@ -67,14 +60,20 @@ function addButtonHandler(event) {
   const expense = getExpenseFromUser();
 
   if (!expense || expense < 0.01) {
+    expensesWarning.classList.add("expenses__warning_active");
     return;
+  } else {
+    expensesWarning.classList.remove("expenses__warning_active");
   }
 
   //Сохраняем значение выбранную категорию
   const currentCategory = getCategory();
   //Проверяем, если категория не выбрана, выходим из функции
   if (currentCategory === "Выберите категорию") {
+    categoryWarning.classList.toggle("category-warning_active");
     return;
+  } else {
+    categoryWarning.classList.remove("category-warning_active");
   }
 
   //Записываем полученное значение траты от пользователя в массив с тратами
@@ -86,6 +85,24 @@ function addButtonHandler(event) {
   resetSelectedCategory();
 }
 
+function confirmButtonHandler(event) {
+  event.preventDefault();
+  let limit = getLimitValue();
+
+  if (!limit || limit < 0.01) {
+    expensesWarning.classList.add("expenses__warning_active");
+    return;
+  } else {
+    expensesWarning.classList.remove("expenses__warning_active");
+  }
+
+  renderLimit();
+  changeInput();
+  renderCreditAmount();
+  activateResetBtn();
+  renderResidualAmount(limit, sum);
+}
+
 //Отображение статусов при загрузке страницы
 function init() {
   logNode.innerText = NO_EXPENSES;
@@ -95,11 +112,14 @@ function init() {
 
 //Получаем значение из поля ввода лимита
 function getLimitValue() {
-  if (!limitInputNode.value || limitInputNode.value < 0) {
+  if (!limitInputNode.value) {
     return;
   }
+
   limit = parseInt(limitInputNode.value);
   clearLimitInput();
+
+  return limit;
 }
 
 //Очищаем поле ввода лимита
