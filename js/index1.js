@@ -34,6 +34,8 @@ let limit;
 
 init(expenses);
 
+//-----------------Кнопки-----------------
+
 //Кнопка подтверждения лимита
 confirmBtnNode.addEventListener("click", function (e) {
   e.preventDefault();
@@ -54,12 +56,12 @@ addBtnNode.addEventListener("click", function (e) {
   if (!expense) {
     return;
   }
-  clearExpenseInput();
+
   trackExpense(expense);
-  renderExpenses(expenses);
+
   activateResetBtn();
-  renderSpent();
-  renderStatus(expenses);
+
+  render(expenses);
 });
 
 //Кнопка сброса
@@ -67,6 +69,8 @@ resetBtn.addEventListener("click", reset);
 
 //Кнопка редактирования
 editBtnNode.addEventListener("click", edit);
+
+//-----------------Функции-----------------
 
 //Отображение статусов при загрузке страницы
 function init() {
@@ -110,7 +114,9 @@ function getExpenseFromUser() {
   if (!inputNode.value) {
     return;
   }
+
   const expense = parseInt(inputNode.value);
+  clearExpenseInput();
 
   return expense;
 }
@@ -146,15 +152,17 @@ function calculateExpenses(expenses) {
   return sum;
 }
 
-//Отображаем сколько потрачено
-function renderSpent() {
-  moneySpentNode.innerText = `${calculateExpenses(expenses)} ${CURRENCY}`;
+//Отрисовываем затраты, статус и историю
+function render(expenses) {
+  const sum = calculateExpenses(expenses);
+
+  renderExpenses(expenses);
+  renderStatus(sum);
+  renderSum(sum);
 }
 
 //Отображаем статус
-function renderStatus(expenses) {
-  const sum = calculateExpenses(expenses);
-
+function renderStatus(sum) {
   if (sum < limit) {
     residualAmount.innerText = limit - sum + ` ${CURRENCY}`;
   } else if (sum == limit) {
@@ -164,6 +172,10 @@ function renderStatus(expenses) {
     creditNode.classList.add("expenses__credit_active");
     creditAmout.innerText = sum - limit + ` ${CURRENCY}`;
   }
+}
+
+function renderSum(sum) {
+  moneySpentNode.innerText = sum + ` ${CURRENCY}`;
 }
 
 //Редактируем лимит
@@ -179,7 +191,8 @@ function reset() {
   creditNode.classList.remove("expenses__credit_active");
   expenses.value = [];
   logNode.innerHTML = NO_EXPENSES;
-  moneySpentNode.value = 0 + ` ${CURRENCY}`;
+  moneySpentNode.value = 0;
+  moneySpentNode.innerText = 0;
   sum.value = 0;
   residualAmount.innerText = limit;
   creditAmout.innerText = "";
