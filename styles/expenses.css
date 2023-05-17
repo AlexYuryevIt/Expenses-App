@@ -117,9 +117,7 @@
   text-align: center;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-  background-image: url(../img/add-icon.png);
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url(../img/add-icon.png) #fff no-repeat center;
 }
 
 .expenses__btn_active {
@@ -142,15 +140,13 @@
   display: flex;
   width: 10%;
   scale: 1;
-  background-image: url(../img/reset-icon.png);
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url(../img/reset-icon.png) #fff no-repeat center;
 }
 
 .expanses__edit-btn {
   border: none;
   outline: none;
-  background-image: url(../img/edit-icon.png);
+  background: url(../img/edit-icon.png) #fff no-repeat center;
   width: 24px;
   height: 24px;
   background-color: transparent;
