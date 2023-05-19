@@ -31,6 +31,7 @@
 
 .expenses__warning_active {
   display: block;
+  transition: all 0.3s ease-in-out;
 }
 
 .expenses__form-edit_inactive {
@@ -39,12 +40,14 @@
 }
 
 .expenses__form-add {
-  display: none;
+  visibility: hidden;
+  scale: 0;
   transition: all 0.5s ease-in-out;
 }
 
 .expenses__form-add_active {
-  display: flex;
+  visibility: visible;
+  scale: 1;
   transition: all 0.5s ease-in-out;
 }
 
